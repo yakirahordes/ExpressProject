@@ -7,7 +7,7 @@ import Files from "./pages/Files";
 import { useState } from "react";
 
 function App() {
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useState();
 
   return (
     <>
@@ -18,7 +18,12 @@ function App() {
               index
               element={<Login username={username} setUsername={setUsername} />}
             />
-            <Route path="register" element={<Register />} />
+            <Route
+              path="register"
+              element={
+                <Register username={username} setUsername={setUsername} />
+              }
+            />
             <Route
               path="drive/:username/"
               element={

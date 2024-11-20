@@ -11,9 +11,6 @@ export const postRequest = async (obj, requestType = "") => {
       `http://localhost:8080/users${requestType}`,
       postOptions
     );
-
-    console.log("request: ", request);
-
     if (!request.ok) throw Error("Did not get expected data");
     const parsedResponse = await request.json();
     console.log("parsedResponse: ", parsedResponse);

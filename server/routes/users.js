@@ -23,45 +23,27 @@ router.post("/", async function (req, res, next) {
 
 router.post("/checkUser", async function (req, res, next) {
   const currentUser = req.body;
-  const folderName = `/public/usersFolders/${currentUser.username}`;
+  const folderName = path.join(
+    __dirname,
+    "..",
+    `/public/usersFolders/${currentUser.username}`
+  );
 
   try {
-    // Check if the folder already exists (user already exists)
-    const exists = await fs
-      .access(folderName)
-      .then(() => true) // Folder exists
-      .catch(() => false); // Folder doesn't exist
-
+    // folder exists?
+    const exists = await fs.stat(folderName);
+    console.log(exists);
     if (exists) {
-      return res.json(false); // User already exists
+      return res.json(false);
     } else {
-      // Create the folder if the user doesn't exist
       await fs.mkdir(folderName);
-      return res.json(true); // New user
+      return res.json(true); // new user
     }
   } catch (err) {
-    console.error(err);
-    return res.json(false); // Error occurred
+    await fs.mkdir(folderName);
+    return res.json(true); // new user
   }
 });
-
-// try {
-//   if (!fs.existsSync(folderName)) {
-//     fs.mkdirSync(folderName);
-//     res.json(true); //added new folder for new bestie
-//   }
-// } catch (err) {
-//   console.error(err);
-//   res.json(false); //existed
-// }
-
-// const checksExistenceOfUser = usersList.includes(currentUser.username);
-// if (checksExistenceOfUser) {
-//   res.send(checksExistenceOfUser);
-// } else {
-//   res.send(checksExistenceOfUser);
-
-// }
 
 /* GET users data. */
 router.get("/:username", async function (req, res, next) {
