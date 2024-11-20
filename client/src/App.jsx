@@ -20,7 +20,7 @@ function App() {
             />
             <Route path="register" element={<Register />} />
             <Route
-              path="drive/:username"
+              path="drive/:username/"
               element={
                 <DriveLayout username={username} setUsername={setUsername} />
               }

@@ -18,7 +18,7 @@ export default function Register() {
     if (password !== verifyPassword) {
       setError("Verified password does not equal to password");
     } else {
-      const currentUser = postRequest(userObj, "checkUser");
+      const currentUser = postRequest(userObj, "/checkUser");
       if (currentUser) {
         navigate(`/drive/${username}`);
       } else {

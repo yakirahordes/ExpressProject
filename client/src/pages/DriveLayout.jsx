@@ -7,6 +7,8 @@ export default function DriveLayout({ username, setUsername }) {
   const [usersFolders, setUsersFolders] = useState([]);
 
   async function handleGetRequest() {
+    console.log("usersFolders: ", usersFolders);
+
     const folders = await getRequest(username);
     setUsersFolders(folders);
     setShowButton(true);
@@ -19,7 +21,7 @@ export default function DriveLayout({ username, setUsername }) {
       {showButton && (
         <div>
           {usersFolders.map((folder, index) => (
-            <Folder key={index} foldername={folder} />
+            <Folder id={index} foldername={folder} />
           ))}
         </div>
       )}
