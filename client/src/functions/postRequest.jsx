@@ -1,4 +1,4 @@
-export const postRequest = async (obj, requestType = "") => {
+export const postRequest = async (obj, username, requestType = "") => {
   const postOptions = {
     method: "POST",
     headers: {
@@ -8,7 +8,7 @@ export const postRequest = async (obj, requestType = "") => {
   };
   try {
     const request = await fetch(
-      `http://localhost:8080/users${requestType}`,
+      `http://localhost:8080/users/${requestType}`,
       postOptions
     );
     if (!request.ok) throw Error("Did not get expected data");

@@ -9,7 +9,7 @@ async function getUsersList() {
     const usersList = await fs.readdir("./public/usersFolders");
     return usersList;
   } catch (err) {
-    console.error("Error reading directory:", err);
+    console.error("error:", err);
   }
 }
 
@@ -60,7 +60,24 @@ router.get("/:username", async function (req, res, next) {
     const folderList = await fs.readdir(location);
     res.json(folderList);
   } catch (err) {
-    console.error("Error reading directory:", err);
+    console.error("error:", err);
+  }
+});
+
+/* POST new folder for user */
+router.post("/folders", async (req, res) => {
+  try {
+    const { username, folderName } = req.body;
+    await fs.mkdir(
+      path.join(
+        __dirname,
+        "..",
+        `public/usersFolders/${username}/${folderName}`
+      )
+    );
+    res.json({ folderName: folderName });
+  } catch {
+    console.error("error:", err);
   }
 });
 
