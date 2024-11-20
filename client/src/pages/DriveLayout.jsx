@@ -11,7 +11,7 @@ export default function DriveLayout({ username }) {
   // folders of user
   const handleGetRequest = async () => {
     try {
-      const folders = await getRequest(username, "users");
+      const folders = await getRequest("users", username);
       setUsersFolders(folders);
     } catch (err) {
       console.log(err);
