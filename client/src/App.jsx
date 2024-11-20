@@ -14,14 +14,11 @@ function App() {
       <Router>
         <Routes>
           <Route path="/">
-            <Route
-              index
-              element={<Login username={username} setUsername={setUsername} />}
-            />
+            <Route index element={<Login setMainUsername={setUsername} />} />
             <Route
               path="register"
               element={
-                <Register username={username} setUsername={setUsername} />
+                <Register username={username} setMainUsername={setUsername} />
               }
             />
             <Route
@@ -30,7 +27,7 @@ function App() {
                 <DriveLayout username={username} setUsername={setUsername} />
               }
             >
-              <Route path="files" element={<Files />} />
+              {/* <Route path="files" element={<Files />} /> */}
             </Route>
           </Route>
         </Routes>

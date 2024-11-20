@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { postRequest } from "../functions/postRequest";
 
-export default function Register({ username, setUsername }) {
+export default function Register({ setMainUsername }) {
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [verifyPassword, setVerifyPassword] = useState("");
   const [error, setError] = useState(null);
@@ -18,6 +19,7 @@ export default function Register({ username, setUsername }) {
       setError("Verified password does not equal to password");
     } else {
       const currentUser = await postRequest(userObj, "/checkUser");
+      setMainUsername(username);
       if (currentUser) {
         navigate(`/drive/${username}`);
       } else {

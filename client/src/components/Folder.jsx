@@ -1,15 +1,30 @@
 import React from "react";
 import { redirect } from "react-router-dom";
+import { getRequest } from "../functions/getRequest";
+import File from "./File";
+import { useState } from "react";
 
-export default function Folder({ foldername, id }) {
-  function handleGetRequst() {
-    redirect("/files");
+export default function Folder({ foldername, id, username }) {
+  const [usersFiles, setUsersFiles] = useState([]);
+
+  async function handleGetRequst() {
+    const files = await getRequest(`${username}/${foldername}`, "files");
+    if (files.length > 0) {
+      setUsersFiles(files);
+    } else {
+      setUsersFiles([""]);
+    }
   }
   return (
     <>
       <div>
         <span>{foldername}</span>
         <button onClick={() => handleGetRequst()}>Show files</button>
+        <div>
+          {usersFiles.map((file, index) => (
+            <File key={index} filename={file} foldername={foldername} />
+          ))}
+        </div>
       </div>
     </>
   );
