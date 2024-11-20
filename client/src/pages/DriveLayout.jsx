@@ -3,14 +3,15 @@ import Folder from "../components/Folder";
 import { getRequest } from "../functions/getRequest";
 import { postRequest } from "../functions/postRequest";
 
-export default function DriveLayout() {
+export default function DriveLayout({ username }) {
+  // const [showButton, setShowButton] = useState(false);
   const [usersFolders, setUsersFolders] = useState([]);
   const [newFolder, setNewFolder] = useState("");
 
   // folders of user
   const handleGetRequest = async () => {
     try {
-      const folders = await getRequest(username);
+      const folders = await getRequest(username, "users");
       setUsersFolders(folders);
     } catch (err) {
       console.log(err);
@@ -41,7 +42,7 @@ export default function DriveLayout() {
       <button onClick={() => addFolder()}>Add Folder</button>
       <div>
         {usersFolders.map((folder, index) => (
-          <Folder key={index} foldername={folder} />
+          <Folder key={index} foldername={folder} username={username} />
         ))}
       </div>
     </>

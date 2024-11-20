@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { postRequest } from "../functions/postRequest";
 
-export default function Login({ username, setUsername }) {
+export default function Login({ setMainUsername }) {
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ export default function Login({ username, setUsername }) {
     };
     const currentUser = await postRequest(userObj);
     if (currentUser) {
+      setMainUsername(username);
       navigate(`/drive/${username}`);
     } else {
       setError("this user does not exist");
