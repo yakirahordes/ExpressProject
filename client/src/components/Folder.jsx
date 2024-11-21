@@ -34,17 +34,37 @@ export default function Folder({ foldername, username }) {
     }
   };
 
+  //rename folder
+  // rename folder
+  // const renameFolder = async () => {
+  //   try {
+  //     const changed = await postRequest(
+  //       {
+  //         oldFolderName: foldername,
+  //         newFolderName: newFile,
+  //         username: username,
+  //       },
+  //       `files/${username}/${foldername}`
+  //     );
+  //     if (changed) {
+  //       handleGetRequest(); // Refresh folder list
+  //       setNewFile(""); // Clear input
+  //     }
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // };
+
   return (
     <div className="folder-card">
       <span>{foldername}</span>
       <input
         type="text"
-        placeholder="New File"
+        placeholder="New Folder Name"
         value={newFile}
         onChange={(e) => setNewFile(e.target.value)}
       />
-      <button onClick={() => addFile()}>Add File</button>
-
+      <button onClick={() => renameFolder()}>Rename Folder</button>
       <button onClick={handleGetRequest}>Show Files</button>
       <div className="file-list">
         {usersFiles.map((file, index) => (
@@ -60,3 +80,44 @@ export default function Folder({ foldername, username }) {
     </div>
   );
 }
+
+//   const renameFolder = async () => {
+//     try {
+//       const changed = await postRequest(
+//         { foldername: foldername, filename: newFile, username: username },
+//         `files/${username}/${foldername}`
+//       );
+//       if (changed) {
+//         setNewFile(""); //input
+//         handleGetRequest(); //list
+//       }
+//     } catch (err) {
+//       console.error("error is:", err);
+//     }
+//   };
+
+//   return (
+//     <div className="folder-card">
+//       <span>{foldername}</span>
+//       <input
+//         type="text"
+//         placeholder="New File"
+//         value={newFile}
+//         onChange={(e) => setNewFile(e.target.value)}
+//       />
+//       <button onClick={() => addFile()}>Add File</button>
+
+//       <button onClick={handleGetRequest}>Show Files</button>
+//       <div className="file-list">
+//         {usersFiles.map((file, index) => (
+//           <File
+//             key={index}
+//             filename={file}
+//             foldername={foldername}
+//             username={username}
+//             onDelete={handleGetRequest}
+//           />
+//         ))}
+//       </div>
+//     </div>
+//   );}
