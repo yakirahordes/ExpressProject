@@ -1,9 +1,10 @@
 import React from "react";
 import { getRequest } from "../functions/getRequest";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { deleteRequest } from "../functions/deleteRequest";
 
-export default function File({ filename, foldername, username }) {
-  const [file, setFile] = useState([]);
+export default function File({ filename, foldername, username, onDelete }) {
+  const [file, setFile] = useState(null);
 
   async function handleGetRequest() {
     const fileContent = await getRequest(
@@ -12,16 +13,23 @@ export default function File({ filename, foldername, username }) {
     );
     setFile(fileContent);
   }
+
   async function handleDeleteRequest() {
-    await deleteREquest("files", `${username}/${foldername}/${filename}`);
+    const deletedFile = await deleteRequest(
+      "files",
+      `${username}/${foldername}/${filename}`
+    );
+    if (deletedFile) {
+      onDelete();
+    }
   }
   return (
-    <>
+    <div className="file-card">
       <div>{filename}</div>
-      <button onClick={() => handleGetRequest()}>show file content</button>
-      <button onClick={() => handleDeleteRequest()}>Delete file</button>
+      <button onClick={() => handleGetRequest()}>Show Content</button>
+      <button onClick={() => handleDeleteRequest()}>Delete File</button>
 
-      <div>{file.fileContent}</div>
-    </>
+      {file && <div>{file.fileContent}</div>}
+    </div>
   );
 }

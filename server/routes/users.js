@@ -14,14 +14,15 @@ async function getUsersList() {
 }
 
 /* POST users listing. */
-router.post("/", async function (req, res, next) {
+router.post("/", async function (req, res) {
   const usersList = await getUsersList();
   const currentUser = req.body;
   const checksExistenceOfUser = usersList.includes(currentUser.username);
+  console.log("checksExistenceOfUser: ", checksExistenceOfUser);
   res.json(checksExistenceOfUser);
 });
 
-router.post("/checkUser", async function (req, res, next) {
+router.post("/checkUser", async function (req, res) {
   const currentUser = req.body;
   const folderName = path.join(
     __dirname,

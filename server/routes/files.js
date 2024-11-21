@@ -35,4 +35,26 @@ router.get("/:username/:foldername/:filename", async function (req, res) {
   }
 });
 
+router.delete("/:username/:foldername/:filename", async function (req, res) {
+  const currentUser = req.params.username;
+  const currentFolder = req.params.foldername;
+  const currentFile = req.params.filename;
+
+  const filePath = path.join(
+    __dirname,
+    "..",
+    `/public/usersFolders/${currentUser}/${currentFolder}/${currentFile}`
+  );
+
+  fs.unlink(filePath, (err) => {
+    if (err) {
+      console.error("Error deleting file:", err);
+      res.write(false);
+    } else {
+      console.log("File deleted successfully");
+      res.write(true);
+    }
+  });
+});
+
 module.exports = router;

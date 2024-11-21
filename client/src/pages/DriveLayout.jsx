@@ -30,21 +30,25 @@ export default function DriveLayout({ username }) {
   };
 
   return (
-    <>
+    <div className="drive-container">
       <h2>Drive</h2>
       <button onClick={() => handleGetRequest()}>Show Folders</button>
       <input
         type="text"
-        placeholder="new folder"
+        placeholder="New Folder"
         value={newFolder}
         onChange={(e) => setNewFolder(e.target.value)}
       />
       <button onClick={() => addFolder()}>Add Folder</button>
-      <div>
+
+      <div className="folder-container">
         {usersFolders.map((folder, index) => (
-          <Folder key={index} foldername={folder} username={username} />
+          <div className="folder-card" key={index}>
+            <span>{folder}</span>
+            <button>Open</button>
+          </div>
         ))}
       </div>
-    </>
+    </div>
   );
 }

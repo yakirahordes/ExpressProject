@@ -40,3 +40,154 @@
 .read-the-docs {
   color: #888;
 }
+
+/* Global Styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f5;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2 {
+  font-weight: bold;
+  text-align: center;
+}
+
+button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4caf50;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+input[type="text"],
+input[type="password"] {
+  padding: 10px;
+  margin: 10px 0;
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+form .inside-form {
+  margin: 10px 0;
+}
+
+/* Error message styling */
+p {
+  color: red;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Links */
+a {
+  text-decoration: none;
+  color: #4caf50;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Layout for Drive and Folders */
+.drive-container {
+  text-align: center;
+  margin: 20px;
+}
+
+.folder-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.folder-card {
+  padding: 20px;
+  width: 150px;
+  text-align: center;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.folder-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.folder-card span {
+  font-size: 18px;
+  color: #333;
+}
+
+.folder-card button {
+  background-color: #008cba;
+}
+
+.folder-card button:hover {
+  background-color: #007b9a;
+}
+
+/* File List inside Folder */
+.file-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+
+.file-card {
+  padding: 15px;
+  width: 120px;
+  text-align: center;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.file-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.file-card div {
+  font-size: 16px;
+  color: #333;
+}
+
+.file-card button {
+  background-color: #f44336;
+}
+
+.file-card button:hover {
+  background-color: #d32f2f;
+}
