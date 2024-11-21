@@ -11,8 +11,7 @@ export const deleteRequest = async (username, requestType) => {
       deleteOptions
     );
 
-    if (!request.ok) throw Error("Was not able to delete");
-    console.log("request", request);
+    console.log("requesttt", request.ok);
     return request.ok;
   } catch (err) {
     console.log(err);

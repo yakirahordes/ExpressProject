@@ -3,7 +3,7 @@ import "./App.css";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import DriveLayout from "./pages/DriveLayout";
-import Files from "./pages/Files";
+import File from "./components/File";
 import { useState } from "react";
 import Folder from "./components/Folder";
 
@@ -34,7 +34,7 @@ function App() {
             />
             <Route
               path="drive/:username/:foldername/:filename"
-              element={<File />}
+              element={<File username={username} />}
             />
           </Route>
         </Routes>

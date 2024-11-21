@@ -49,7 +49,7 @@ router.delete(
       `../public/usersFolders/${currentUser}/${currentFolder}/${currentFile}`
     );
 
-    fs.unlink(filePath, (err) => {
+    const success = await fs.unlink(filePath, (err) => {
       if (err) {
         console.error("Error deleting file:", err);
         res.write(false);
@@ -58,7 +58,7 @@ router.delete(
         res.write(true);
       }
     });
-    next();
+    res.json(!success).end();
   }
 );
 

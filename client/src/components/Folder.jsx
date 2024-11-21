@@ -38,7 +38,7 @@ export default function Folder({ username }) {
     }
   };
 
-  // rename folder
+  //rename folder
   // rename folder
   // const renameFolder = async () => {
   //   try {

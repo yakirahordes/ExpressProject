@@ -2,9 +2,17 @@ import React from "react";
 import { getRequest } from "../functions/getRequest";
 import { useState, useEffect } from "react";
 import { deleteRequest } from "../functions/deleteRequest";
+import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-export default function File({ filename, foldername, username, onDelete }) {
+export default function File({ username }) {
   const [file, setFile] = useState(null);
+  const [usersFiles, setUsersFiles] = useState([]);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const currentUrl = location.pathname.split("/");
+  const foldername = currentUrl[currentUrl.length - 2];
+  const filename = currentUrl[currentUrl.length - 1];
 
   async function handleGetRequest() {
     const fileContent = await getRequest(
@@ -14,15 +22,24 @@ export default function File({ filename, foldername, username, onDelete }) {
     setFile(fileContent);
   }
 
+  async function handleGetRequestFolder() {
+    const files = await getRequest(`${username}/${foldername}`, "files");
+    if (files.length > 0) {
+      setUsersFiles(files);
+    } else {
+      setUsersFiles([]);
+    }
+  }
+
   async function handleDeleteRequest() {
     const deletedFile = await deleteRequest(
       "files",
       `${username}/${foldername}/${filename}`
     );
-    console.log(deletedFile);
     if (deletedFile) {
       console.log("hello");
-      onDelete();
+      handleGetRequestFolder();
+      navigate(`/drive/${username}/${foldername}`);
     }
   }
   return (
