@@ -10,14 +10,17 @@ export default function File({ filename, foldername, username }) {
       "files",
       `${username}/${foldername}/${filename}`
     );
-    console.log("fileContent: ", fileContent);
-
     setFile(fileContent);
+  }
+  async function handleDeleteRequest() {
+    await deleteREquest("files", `${username}/${foldername}/${filename}`);
   }
   return (
     <>
       <div>{filename}</div>
       <button onClick={() => handleGetRequest()}>show file content</button>
+      <button onClick={() => handleDeleteRequest()}>Delete file</button>
+
       <div>{file.fileContent}</div>
     </>
   );

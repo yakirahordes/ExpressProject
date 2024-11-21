@@ -20,7 +20,7 @@ export default function Register({ setMainUsername }) {
     } else {
       const currentUser = await postRequest(userObj, "/checkUser");
       setMainUsername(username);
-      if (currentUser) {
+      if (!currentUser) {
         navigate(`/drive/${username}`);
       } else {
         setError("this username exists");
