@@ -3,6 +3,7 @@ import { getRequest } from "../functions/getRequest";
 import File from "./File";
 import { useState } from "react";
 import { postRequest } from "../functions/postRequest";
+// import { Link } from "react-router-dom";
 
 export default function Folder({ foldername, username }) {
   const [usersFiles, setUsersFiles] = useState([]);
@@ -64,6 +65,7 @@ export default function Folder({ foldername, username }) {
         onChange={(e) => setNewFile(e.target.value)}
       />
       <button onClick={() => renameFolder()}>Rename Folder</button>
+      <button onClick={() => addFile()}>Add File</button>
       <button onClick={handleGetRequest}>Show Files</button>
       <div className="file-list">
         {usersFiles.map((file, index) => (
