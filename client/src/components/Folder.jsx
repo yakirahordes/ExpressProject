@@ -3,6 +3,7 @@ import { getRequest } from "../functions/getRequest";
 import File from "./File";
 import { useState } from "react";
 import { postRequest } from "../functions/postRequest";
+// import { Link } from "react-router-dom";
 
 export default function Folder({ foldername, username }) {
   const [usersFiles, setUsersFiles] = useState([]);

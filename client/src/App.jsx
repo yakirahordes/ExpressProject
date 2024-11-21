@@ -5,6 +5,7 @@ import Register from "./pages/Register";
 import DriveLayout from "./pages/DriveLayout";
 import Files from "./pages/Files";
 import { useState } from "react";
+import Folder from "./components/Folder";
 
 function App() {
   const [username, setUsername] = useState();
@@ -22,13 +23,11 @@ function App() {
               }
             />
             <Route
-              path="drive/:username/"
+              path="drive/:username"
               element={
                 <DriveLayout username={username} setUsername={setUsername} />
               }
-            >
-              {/* <Route path="files" element={<Files />} /> */}
-            </Route>
+            />
           </Route>
         </Routes>
       </Router>
