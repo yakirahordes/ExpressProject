@@ -17,6 +17,7 @@ async function getUsersList() {
 router.post("/", async function (req, res, next) {
   const usersList = await getUsersList();
   const currentUser = req.body;
+  console.log("currentUser: ", currentUser);
   const checksExistenceOfUser = usersList.includes(currentUser.username);
   console.log("checksExistenceOfUser: ", checksExistenceOfUser);
   res.json(checksExistenceOfUser);

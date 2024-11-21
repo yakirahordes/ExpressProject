@@ -46,8 +46,7 @@ router.delete(
 
     const filePath = path.join(
       __dirname,
-      "..",
-      `/public/usersFolders/${currentUser}/${currentFolder}/${currentFile}`
+      `../public/usersFolders/${currentUser}/${currentFolder}/${currentFile}`
     );
 
     fs.unlink(filePath, (err) => {
@@ -62,6 +61,29 @@ router.delete(
     next();
   }
 );
+
+//(Post) add new file
+router.post("/:username/:foldername/:filename", async (req, res) => {
+  const username = req.body.username;
+  const folderName = req.body.foldername;
+  const fileName = req.body.filename;
+  console.log("fileName: ", fileName);
+  console.log("folderName: ", folderName);
+  console.log("username: ", username);
+
+  const filePath = path.join(
+    __dirname,
+    `../public/usersFolders/${username}/${folderName}/${fileName}`
+  );
+  console.log("filePath: ", filePath);
+
+  try {
+    await fs.open(filePath, "a");
+    res.json(true);
+  } catch {
+    res.json(false);
+  }
+});
 
 //add new file: todo
 //delete file: todo

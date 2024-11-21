@@ -18,7 +18,7 @@ export default function Register({ setMainUsername }) {
     if (password !== verifyPassword) {
       setError("Verified password does not equal to password");
     } else {
-      const currentUser = await postRequest(userObj, "/checkUser");
+      const currentUser = await postRequest(userObj, "users/checkUser");
       console.log("currentUser: ", currentUser);
 
       setMainUsername(username);

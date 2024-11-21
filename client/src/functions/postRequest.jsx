@@ -6,18 +6,17 @@ export const postRequest = async (obj, requestType = "") => {
     },
     body: JSON.stringify(obj),
   };
-  try {
-    const request = await fetch(
-      `http://localhost:8080/users/${requestType}`,
-      postOptions
-    );
+  // try {
+  const request = await fetch(
+    `http://localhost:8080/${requestType}`,
+    postOptions
+  );
+  if (!request.ok) alert("Did not get expected data");
+  const parsedResponse = await request.json();
+  console.log("parsedResponse: ", parsedResponse);
 
-    if (!request.ok) throw Error("Did not get expected data");
-    const parsedResponse = await request.json();
-    console.log("parsedResponse: ", parsedResponse);
-    return parsedResponse;
-  } catch (err) {
-    console.log(err);
-    return err.message;
-  }
+  return parsedResponse;
+  // } catch (err) {
+  //   console.log(err);
+  // }
 };

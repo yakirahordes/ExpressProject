@@ -20,9 +20,14 @@ export default function DriveLayout({ username }) {
   // new folder
   const addFolder = async () => {
     try {
-      await postRequest({ folderName: newFolder }, "folders");
-      setNewFolder(""); //input
-      handleGetRequest(); //list
+      const added = await postRequest(
+        { foldername: newFolder, username: username },
+        "folders"
+      );
+      if (added) {
+        setNewFolder(""); //input
+        handleGetRequest(); //list
+      }
     } catch (err) {
       console.error("error is:", err);
     }

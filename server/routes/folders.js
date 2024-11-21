@@ -24,20 +24,21 @@ router.get("/:username", async function (req, res, next) {
   }
 });
 
-//(Post) add new folder: todo
-router.post("/folders", async (req, res) => {
+//(Post) add new folder
+router.post("/", async (req, res) => {
+  const username = req.body.username;
+  const folderName = req.body.foldername;
+
+  const folderPath = path.join(
+    __dirname,
+    "..",
+    `public/usersFolders/${username}/${folderName}`
+  );
   try {
-    const { username, folderName } = req.body;
-    await fs.mkdir(
-      path.join(
-        __dirname,
-        "..",
-        `public/usersFolders/${username}/${folderName}`
-      )
-    );
-    res.json({ folderName: folderName });
+    await fs.mkdir(folderPath);
+    res.json(true);
   } catch {
-    console.error("error:", err);
+    res.json(false);
   }
 });
 

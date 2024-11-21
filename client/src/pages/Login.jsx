@@ -14,7 +14,7 @@ export default function Login({ setMainUsername }) {
       username: username,
       password: password,
     };
-    const currentUser = await postRequest(userObj);
+    const currentUser = await postRequest(userObj, "users");
     if (currentUser) {
       setMainUsername(username);
       navigate(`/drive/${username}`);
