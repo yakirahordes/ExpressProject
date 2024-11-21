@@ -42,7 +42,27 @@ router.post("/", async (req, res) => {
   }
 });
 
-//delete folder: todo
-//rename folder: todo
+// (Post) rename folder: todo
+// router.post("/rename", async (req, res) => {
+//   //check
+//   const { username, oldFolderName, newFolderName } = req.body;
+//   const oldFolderPath = path.join(
+//     __dirname,
+//     "..",
+//     `public/usersFolders/${username}/${oldFolderName}`
+//   );
+//   const newFolderPath = path.join(
+//     __dirname,
+//     "..",
+//     `public/usersFolders/${username}/${newFolderName}`
+//   );
+//   try {
+//     await fs.rename(oldFolderPath, newFolderPath);
+//     res.json(true);
+//   } catch (err) {
+//     console.error(err);
+//     res.json(false);
+//   }
+// });
 
 module.exports = router;
