@@ -7,7 +7,7 @@ export default function Folder({ foldername, username }) {
   const [usersFiles, setUsersFiles] = useState([]);
 
   async function handleGetRequst() {
-    const files = await getRequest("files", `${username}/${foldername}`);
+    const files = await getRequest(`${username}/${foldername}`, "files");
     if (files.length > 0) {
       setUsersFiles(files);
     } else {

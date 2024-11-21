@@ -4,14 +4,13 @@ import { getRequest } from "../functions/getRequest";
 import { postRequest } from "../functions/postRequest";
 
 export default function DriveLayout({ username }) {
-  // const [showButton, setShowButton] = useState(false);
   const [usersFolders, setUsersFolders] = useState([]);
   const [newFolder, setNewFolder] = useState("");
 
-  // folders of user
+  // folders of user. get, get request,
   const handleGetRequest = async () => {
     try {
-      const folders = await getRequest("users", username);
+      const folders = await getRequest(username, "folders");
       setUsersFolders(folders);
     } catch (err) {
       console.log(err);

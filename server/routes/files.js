@@ -3,6 +3,7 @@ var path = require("path");
 var router = express.Router();
 var fs = require("fs").promises;
 
+//get files
 router.get("/:username/:foldername", async function (req, res) {
   const currentUser = req.params.username;
   const currentFolder = req.params.foldername;
@@ -16,6 +17,7 @@ router.get("/:username/:foldername", async function (req, res) {
   res.json(filesList);
 });
 
+//get files content
 router.get("/:username/:foldername/:filename", async function (req, res) {
   const currentUser = req.params.username;
   const currentFolder = req.params.foldername;
@@ -56,5 +58,9 @@ router.delete("/:username/:foldername/:filename", async function (req, res) {
     }
   });
 });
+
+//add new file: todo
+//delete file: todo
+//rename file: todo
 
 module.exports = router;
