@@ -19,8 +19,10 @@ export default function Register({ setMainUsername }) {
       setError("Verified password does not equal to password");
     } else {
       const currentUser = await postRequest(userObj, "/checkUser");
+      console.log("currentUser: ", currentUser);
+
       setMainUsername(username);
-      if (!currentUser) {
+      if (currentUser) {
         navigate(`/drive/${username}`);
       } else {
         setError("this username exists");

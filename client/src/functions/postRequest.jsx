@@ -14,6 +14,7 @@ export const postRequest = async (obj, requestType = "") => {
 
     if (!request.ok) throw Error("Did not get expected data");
     const parsedResponse = await request.json();
+    console.log("parsedResponse: ", parsedResponse);
     return parsedResponse;
   } catch (err) {
     console.log(err);
