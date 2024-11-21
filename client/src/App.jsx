@@ -28,6 +28,14 @@ function App() {
                 <DriveLayout username={username} setUsername={setUsername} />
               }
             />
+            <Route
+              path="drive/:username/:foldername"
+              element={<Folder username={username} />}
+            />
+            <Route
+              path="drive/:username/:foldername/:filename"
+              element={<File />}
+            />
           </Route>
         </Routes>
       </Router>

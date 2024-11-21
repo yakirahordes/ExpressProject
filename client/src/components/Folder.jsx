@@ -3,11 +3,15 @@ import { getRequest } from "../functions/getRequest";
 import File from "./File";
 import { useState } from "react";
 import { postRequest } from "../functions/postRequest";
-// import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-export default function Folder({ foldername, username }) {
+export default function Folder({ username }) {
   const [usersFiles, setUsersFiles] = useState([]);
   const [newFile, setNewFile] = useState("");
+  const location = useLocation();
+  const currentUrl = location.pathname.split("/");
+  const foldername = currentUrl[currentUrl.length - 1];
 
   async function handleGetRequest() {
     const files = await getRequest(`${username}/${foldername}`, "files");
@@ -69,13 +73,16 @@ export default function Folder({ foldername, username }) {
       <button onClick={handleGetRequest}>Show Files</button>
       <div className="file-list">
         {usersFiles.map((file, index) => (
-          <File
-            key={index}
-            filename={file}
-            foldername={foldername}
-            username={username}
-            onDelete={handleGetRequest}
-          />
+          <li key={index}>
+            <Link to={`/drive/${username}/${foldername}/${file}`}>{file}</Link>
+          </li>
+          // <File
+          //   key={index}
+          //   filename={file}
+          //   foldername={foldername}
+          //   username={username}
+          //   onDelete={handleGetRequest}
+          // />
         ))}
       </div>
     </div>

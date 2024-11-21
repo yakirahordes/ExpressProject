@@ -48,13 +48,19 @@ export default function DriveLayout({ username }) {
 
       <div className="folder-container">
         {usersFolders.map((folder, index) => (
-          <Folder
-            key={folder + index}
-            foldername={folder}
-            username={username}
-          />
+          <li key={index}>
+            <Link to={`/drive/${username}/${folder}`}>{folder}</Link>
+          </li>
         ))}
       </div>
     </div>
   );
+}
+
+{
+  /* <Folder
+            key={folder + index}
+            foldername={folder}
+            username={username}
+          /> */
 }
