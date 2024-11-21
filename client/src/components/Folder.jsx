@@ -65,6 +65,7 @@ export default function Folder({ foldername, username }) {
         onChange={(e) => setNewFile(e.target.value)}
       />
       <button onClick={() => renameFolder()}>Rename Folder</button>
+      <button onClick={() => addFile()}>Add File</button>
       <button onClick={handleGetRequest}>Show Files</button>
       <div className="file-list">
         {usersFiles.map((file, index) => (
