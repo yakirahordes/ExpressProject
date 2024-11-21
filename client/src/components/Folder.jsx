@@ -6,7 +6,7 @@ import { useState } from "react";
 export default function Folder({ foldername, username }) {
   const [usersFiles, setUsersFiles] = useState([]);
 
-  async function handleGetRequst() {
+  async function handleGetRequest() {
     const files = await getRequest(`${username}/${foldername}`, "files");
     if (files.length > 0) {
       setUsersFiles(files);
@@ -14,10 +14,6 @@ export default function Folder({ foldername, username }) {
       setUsersFiles([]);
     }
   }
-
-  const handleDelete = (deletedFilename) => {
-    handleGetRequst();
-  };
 
   return (
     <div className="folder-card">
@@ -30,6 +26,7 @@ export default function Folder({ foldername, username }) {
             filename={file}
             foldername={foldername}
             username={username}
+            onDelete={handleGetRequest}
           />
         ))}
       </div>

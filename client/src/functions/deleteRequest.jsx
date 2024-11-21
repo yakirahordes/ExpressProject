@@ -12,9 +12,8 @@ export const deleteRequest = async (username, requestType) => {
     );
 
     if (!request.ok) throw Error("Was not able to delete");
-
-    const parsedResponse = await request.json();
-    return parsedResponse;
+    console.log("request", request);
+    return request.ok;
   } catch (err) {
     console.log(err);
     return { message: err.message };

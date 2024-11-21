@@ -42,10 +42,11 @@ export default function DriveLayout({ username }) {
 
       <div className="folder-container">
         {usersFolders.map((folder, index) => (
-          <div className="folder-card" key={index}>
-            <span>{folder}</span>
-            <button>Open</button>
-          </div>
+          <Folder
+            key={folder + index}
+            foldername={folder}
+            username={username}
+          />
         ))}
       </div>
     </div>

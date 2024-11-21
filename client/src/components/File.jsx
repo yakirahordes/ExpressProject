@@ -19,7 +19,9 @@ export default function File({ filename, foldername, username, onDelete }) {
       "files",
       `${username}/${foldername}/${filename}`
     );
+    console.log(deletedFile);
     if (deletedFile) {
+      console.log("hello");
       onDelete();
     }
   }

@@ -37,27 +37,31 @@ router.get("/:username/:foldername/:filename", async function (req, res) {
   }
 });
 
-router.delete("/:username/:foldername/:filename", async function (req, res) {
-  const currentUser = req.params.username;
-  const currentFolder = req.params.foldername;
-  const currentFile = req.params.filename;
+router.delete(
+  "/:username/:foldername/:filename",
+  async function (req, res, next) {
+    const currentUser = req.params.username;
+    const currentFolder = req.params.foldername;
+    const currentFile = req.params.filename;
 
-  const filePath = path.join(
-    __dirname,
-    "..",
-    `/public/usersFolders/${currentUser}/${currentFolder}/${currentFile}`
-  );
+    const filePath = path.join(
+      __dirname,
+      "..",
+      `/public/usersFolders/${currentUser}/${currentFolder}/${currentFile}`
+    );
 
-  fs.unlink(filePath, (err) => {
-    if (err) {
-      console.error("Error deleting file:", err);
-      res.write(false);
-    } else {
-      console.log("File deleted successfully");
-      res.write(true);
-    }
-  });
-});
+    fs.unlink(filePath, (err) => {
+      if (err) {
+        console.error("Error deleting file:", err);
+        res.write(false);
+      } else {
+        console.log("File deleted successfully");
+        res.write(true);
+      }
+    });
+    next();
+  }
+);
 
 //add new file: todo
 //delete file: todo
