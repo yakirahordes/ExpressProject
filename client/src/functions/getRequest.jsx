@@ -1,7 +1,7 @@
 export const getRequest = async (username, requestType) => {
   try {
     const request = await fetch(
-      `http://localhost:8080/${username}/${requestType}`
+      `http://localhost:8080/${requestType}/${username}`
     );
 
     if (!request.ok) throw Error("Did not get expected data");

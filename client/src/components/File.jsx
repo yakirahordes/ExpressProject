@@ -7,8 +7,8 @@ export default function File({ filename, foldername, username }) {
 
   async function handleGetRequest() {
     const fileContent = await getRequest(
-      "files",
-      `${username}/${foldername}/${filename}`
+      `${username}/${foldername}/${filename}`,
+      "files"
     );
     setFile(fileContent);
   }

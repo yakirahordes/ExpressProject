@@ -13,14 +13,16 @@ async function getUsersList() {
   }
 }
 
-/* POST users listing. */
+//post for login
 router.post("/", async function (req, res, next) {
   const usersList = await getUsersList();
   const currentUser = req.body;
   const checksExistenceOfUser = usersList.includes(currentUser.username);
+  console.log("checksExistenceOfUser: ", checksExistenceOfUser);
   res.json(checksExistenceOfUser);
 });
 
+//post for signup
 router.post("/checkUser", async function (req, res, next) {
   const currentUser = req.body;
   const folderName = path.join(
@@ -45,40 +47,22 @@ router.post("/checkUser", async function (req, res, next) {
   }
 });
 
-/* GET users data. */
-router.get("/:username", async function (req, res, next) {
-  const myUrl = req.url.split("/");
-  const username = myUrl[myUrl.length - 1];
-  console.log("username: ", username);
-  const location = path.join(
-    __dirname,
-    "..",
-    `public/usersFolders/${username}`
-  );
+// //get folders
+// router.get("/:username", async function (req, res, next) {
+//   const myUrl = req.url.split("/");
+//   const username = myUrl[myUrl.length - 1];
+//   const location = path.join(
+//     __dirname,
+//     "..",
+//     `public/usersFolders/${username}`
+//   );
 
-  try {
-    const folderList = await fs.readdir(location);
-    res.json(folderList);
-  } catch (err) {
-    console.error("error:", err);
-  }
-});
-
-/* POST new folder for user */
-router.post("/folders", async (req, res) => {
-  try {
-    const { username, folderName } = req.body;
-    await fs.mkdir(
-      path.join(
-        __dirname,
-        "..",
-        `public/usersFolders/${username}/${folderName}`
-      )
-    );
-    res.json({ folderName: folderName });
-  } catch {
-    console.error("error:", err);
-  }
-});
+//   try {
+//     const folderList = await fs.readdir(location);
+//     res.json(folderList);
+//   } catch (err) {
+//     console.error("error:", err);
+//   }
+// });
 
 module.exports = router;
